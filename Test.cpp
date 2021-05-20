@@ -43,7 +43,7 @@ TEST_CASE("for each") {
     BinaryTree<string> bt;
     bt.add_root("1").add_left("1", "9").add_left("9", "4").add_right("9", "5").add_right("1", "3").add_left("1", "2");
     for (const string& node: bt) { 
-    	CHECK_THROWS(node.size());
+    	CHECK_NOTHROW(node.size());
     }
 }
 
