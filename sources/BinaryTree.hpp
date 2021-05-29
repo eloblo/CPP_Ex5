@@ -80,15 +80,7 @@ namespace ariel{
 				}
 			}
 			BinaryTree<T>(BinaryTree<T> &&bt) noexcept{     //move constructor
-				//if bt is not empty copy the nodes
-				if(bt.root != nullptr){
-					root = new Node(bt.root->value);
-					copy(root, bt.root);
-				}
-				else{
-					root = nullptr;
-				}
-				bt.clear(bt.root);   //delete all bt's nodes
+				root = bt.root;
 				bt.root = nullptr;
 			}
 			BinaryTree<T>& operator= (const BinaryTree<T> &other){   //copy operator 
@@ -108,17 +100,9 @@ namespace ariel{
 				return *this;
 			}
 			BinaryTree<T>& operator= (BinaryTree<T> &&other) noexcept{   //move operator
-				//clear this tree and copy
-				if(other.root != nullptr){
-					this->clear(root);
-					root = new Node(other.root->value);
-					copy(root, other.root);
-				}
-				else{
-					root = nullptr;
-				}
-				//clear the other tree
-				other.clear(other.root);
+				//delete this tree and move the root
+				this->clear(root);
+				root = other.root;
 				other.root = nullptr;
 				return *this;
 			}
